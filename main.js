@@ -26,4 +26,4 @@ function wordCounter() {
 input.addEventListener('keyup', wordCounter);
 secondTextbox.addEventListener('keyup', wordCounter);
 
-document.addEventListener("DOMContentLoaded", wordCounter);   
+document.addEventListener("DOMContentLoaded", wordCounter);
