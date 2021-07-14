@@ -5,7 +5,7 @@ let secondTextbox = document.getElementById('secondTextbox');
 
 // compute and update the count
 function wordCounter() {
-    
+
     // regex takes care of carriage return,form feed etc. as well
     let a = input.value;
     let b = secondTextbox.value;
@@ -13,12 +13,12 @@ function wordCounter() {
     let finalString = text.trim().split(/\s+/);
     console.log(finalString);
     let wordCount = 0;
-    
+
     for (let i = 0; i < finalString.length; i++) {
         if (finalString[i] !== "") {
             wordCount++;
         }
-        count.innerText = wordCount;    
+        count.innerText = wordCount;
     }
 }
 
