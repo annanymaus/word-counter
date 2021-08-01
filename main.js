@@ -1,11 +1,11 @@
 
-// returns a list of strings from strings in both text boxes
+// returns a list of strings from strings in all text boxes
 function getTextBoxesString() {
-    let firstTextBox = document.getElementById('first-text-box');
-    let secondTextBox = document.getElementById('second-text-box');
-    let textBox1 = firstTextBox.value.trim();
-    let textBox2 = secondTextBox.value.trim();
-    let finalString = textBox1 + " " + textBox2;
+    let collectiveTextboxes = document.getElementsByClassName("input-box");
+    let finalString = "";
+    for(let i = 0; i < collectiveTextboxes.length; i++) {
+        finalString = finalString + " " + collectiveTextboxes[i].value.trim();
+    }
     let splitString = finalString.split(/\s+/);
     return splitString;
 }
@@ -35,9 +35,8 @@ function finalCall() {
 }
 
 // registering event listener
-let firstTextBox1 = document.getElementById('first-text-box');
-let secondTextBox1 = document.getElementById('second-text-box');
-firstTextBox1.addEventListener('keyup', finalCall);
-secondTextBox1.addEventListener('keyup', finalCall);
-
+let collectiveTextboxes = document.getElementsByClassName("input-box");
+for(let i = 0; i < collectiveTextboxes.length; i++) {
+    collectiveTextboxes[i].addEventListener("keyup", finalCall);
+}
 document.addEventListener("DOMContentLoaded", finalCall);
