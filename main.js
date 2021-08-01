@@ -1,29 +1,43 @@
-// fetch the dom elements we will manipulate
-let count = document.getElementById('count');
-let input = document.getElementById('input');
-let secondTextbox = document.getElementById('secondTextbox');
 
-// compute and update the count
-function wordCounter() {
-
-    // regex takes care of carriage return,form feed etc. as well
-    let a = input.value;
-    let b = secondTextbox.value;
-    let text =  a + " " + b;
-    let finalString = text.trim().split(/\s+/);
-    console.log(finalString);
-    let wordCount = 0;
-
-    for (let i = 0; i < finalString.length; i++) {
-        if (finalString[i] !== "") {
-            wordCount++;
-        }
-        count.innerText = wordCount;
-    }
+// returns a list of strings from strings in both text boxes
+function getTextBoxesString() {
+    let firstTextBox = document.getElementById('first-text-box');
+    let secondTextBox = document.getElementById('second-text-box');
+    let textBox1 = firstTextBox.value.trim();
+    let textBox2 = secondTextBox.value.trim();
+    let finalString = textBox1 + " " + textBox2;
+    let splitString = finalString.split(/\s+/);
+    return splitString;
 }
 
-// register listeners that trigger the wordCounter
-input.addEventListener('keyup', wordCounter);
-secondTextbox.addEventListener('keyup', wordCounter);
+// returns the number of strings in the list of strings
+function countWords(inputList) {
+    let wordCount = 0;
+    for (let i = 0; i < inputList.length; i++) {
+        if (inputList[i] !== "") {
+            wordCount++;
+        }
+    }
+    return wordCount;
+}
 
-document.addEventListener("DOMContentLoaded", wordCounter);
+// updates the value of 'count' dom object
+function updateCount(wordCount) {
+    let count = document.getElementById("count");
+    count.innerText = wordCount;
+}
+
+// event listener
+function finalCall() {
+    let step1 = getTextBoxesString();
+    let step2 = countWords(step1);
+    updateCount(step2);
+}
+
+// registering event listener
+let firstTextBox1 = document.getElementById('first-text-box');
+let secondTextBox1 = document.getElementById('second-text-box');
+firstTextBox1.addEventListener('keyup', finalCall);
+secondTextBox1.addEventListener('keyup', finalCall);
+
+document.addEventListener("DOMContentLoaded", finalCall);
