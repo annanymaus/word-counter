@@ -32,11 +32,30 @@ function finalCall() {
     let step1 = getTextBoxesString();
     let step2 = countWords(step1);
     updateCount(step2);
+    console.log("run in final call");
 }
 
+let submitButton = document.getElementById("submit-button");
+submitButton.addEventListener("click", () => {
+    let a = document.getElementById("textbox-number");
+    let b = Number(a.value);
+    var c = '';
+    for (j = 0; j < b; j++) {
+        var textbox = '<textarea class="input-box"></textarea>';
+        c = c + textbox;
+    }
+
+    let d = document.getElementById("text-areas");
+    d.innerHTML = c;
+    //d.addEventListener("keyup", finalCall);
+    let collectiveTextboxes = document.getElementsByClassName("input-box");
+    for(let i = 0; i < collectiveTextboxes.length; i++) {
+        collectiveTextboxes[i].addEventListener("keyup", finalCall);
+    }
+    //console.log(b);
+});
+
 // registering event listener
-let collectiveTextboxes = document.getElementsByClassName("input-box");
-for(let i = 0; i < collectiveTextboxes.length; i++) {
-    collectiveTextboxes[i].addEventListener("keyup", finalCall);
-}
+
+//console.log("last line");
 document.addEventListener("DOMContentLoaded", finalCall);
